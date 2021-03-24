@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware'=>['CheckSession']], function(){
+    Route::group(['prefix'=>'user'], function(){
+        Route::get('/logout', [UserController::class, 'logout']);
+        Route::get('/profile', [UserController::class, 'profile']);
+    });
+    Route::group(['prefix'=>'blog'], function(){
+        Route::get('/create', [BlogController::class, 'createGet']);
+        Route::post('/create', [BlogController::class, 'createPost']);
+    });
 });
+Route::get('/login', [UserController::class, 'loginGet']);
+Route::post('/login', [UserController::class, 'loginPost']);
+Route::get('/register', [UserController::class, 'registerGet']);
+Route::post('/register', [UserController::class, 'registerPost']);
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/{slug}', [HomeController::class, 'detail'])->where('slug','.*');
