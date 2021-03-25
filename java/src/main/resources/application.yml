@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
+  datasource:
+    url: jdbc:mysql://localhost:3306/blogJava
+    username: root
+    password: Mes1a3*2
