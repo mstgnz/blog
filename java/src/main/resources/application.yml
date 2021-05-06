@@ -11,3 +11,9 @@ spring:
     url: jdbc:mysql://localhost:3306/blogJava
     username: root
     password: Mes1a3*2
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: mstgnz
+    password: mstgnz
+

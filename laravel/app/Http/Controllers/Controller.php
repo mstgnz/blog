@@ -19,17 +19,20 @@ class Controller extends BaseController
     public function __construct()
     {
 
-        Session::start();
-
-        $this->user = CSession::get('user');
-
-        $this->set('user', $this->user);
-
+        //Session::start();
+        
     }
 
     // Set View Args
     public function set($key=null, $value=null){
         View::share($key, $value);
+    }
+
+    // Set Session
+    public function setSession($user){
+        CSession::put("user",$user);
+        $this->set("user", $user);
+        $this->user = $user;
     }
 
 }

@@ -19,7 +19,7 @@ class CheckSession
     public function handle($request, Closure $next)
     {
         $user = CSession::get("user");
-        if(!$user){
+        if(empty($user)){
             return redirect('/');
         }
         return $next($request);

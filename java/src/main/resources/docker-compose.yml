@@ -1,0 +1,23 @@
+version: '3.4'
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: blog_db
+    environment:
+      POSTGRES_PASSWORD: myBlog
+  adminer:
+    image: adminer
+    restart: always
+    container_name: blog_adminer
+    ports:
+      - 8080:8080
+  spring-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: blog_rabbitmq
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    environment:
+      - RABBITMQ_DEFAULT_USER=mstgnz
+      - RABBITMQ_DEFAULT_PASS=mstgnz

@@ -8,20 +8,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-            </li>
-            @if ($user == null)
+            @if (!Session::has('user'))
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/login#login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" href="/register#register">Register</a>
                 </li>
             @endif
-            @if ($user)
+            @if (Session::has('user'))
                 <li class="nav-item">
                     <a class="nav-link" href="/blog/create">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">Logout</a>
                 </li>
             @endif
         </ul>
