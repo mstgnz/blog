@@ -32,8 +32,8 @@ public class Blog implements Serializable {
     @OneToMany
     @JoinColumn(name = "comments_id")
     private List<Comment> comments;
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Date createDate;
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Date updateDate;

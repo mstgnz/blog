@@ -21,5 +21,7 @@ public class Comment implements Serializable {
     @Column(updatable = false)
     private Long id;
     private String Content;
+    @Column(updatable = false,
+            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Date createDate;
 }

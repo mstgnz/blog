@@ -20,13 +20,12 @@ public class User /*implements UserDetails*/ {
     @SequenceGenerator(name="seq_user", allocationSize = 1)
     @GeneratedValue(generator = "seq_user", strategy = GenerationType.SEQUENCE)
     @Column(updatable = false)
-    private long id;
+    private Long id;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
     private Date createDate;
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Date updateDate;

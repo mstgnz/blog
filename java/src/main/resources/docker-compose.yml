@@ -6,12 +6,8 @@ services:
     container_name: blog_db
     environment:
       POSTGRES_PASSWORD: myBlog
-  adminer:
-    image: adminer
-    restart: always
-    container_name: blog_adminer
     ports:
-      - 8080:8080
+      - 5432:5432
   spring-rabbitmq:
     image: rabbitmq:3-management
     container_name: blog_rabbitmq
