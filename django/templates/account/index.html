@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {{ request.user.fullname }}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

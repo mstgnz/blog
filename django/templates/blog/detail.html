@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{ blog.get_image_or_default }}" alt="{{blog.slug}}" width="100%" />
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ blog.title }}</h5>
+                            <p class="card-text">{{ blog.content }}</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <hr />
+                        <form method="post" class="form p-5">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="mb-2">
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                    <span class="small" style="position:absolute;right:5px;">{{ field.help_text }}</span>
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-outline-info button"><i class="fas fa-angle-right"></i> Yorumla <i class="fas fa-angle-left"></i></button>
+                        </form>
+                        {% if blog.comments %}
+                        <hr />
+                        {% for comment in blog.comments.all %}
+                            <div class="p-2">
+                                <span>{{ comment.name }} : </span>
+                                <span>{{ comment.text }}</span>
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

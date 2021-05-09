@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-12" id="blog-list">
+            {% for blog in blogs %}
+            <div class="post-preview">
+                <a href="{{ blog.get_absolute_url }}">
+                  <h2 class="post-title">
+                    {{ blog.title }}
+                  </h2>
+                  <h3 class="post-subtitle">
+                    {{ blog.content|slice:"0:150" }}...
+                  </h3>
+                </a>
+                <p class="post-meta">Posted by
+                  <a href="#">{{ blog.user.username }}</a>
+                  on {{ blog.create_date }}
+                </p>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

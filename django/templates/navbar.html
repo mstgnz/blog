@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="/blog">My BLOG</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:index' %}"><i class="fas fa-user"></i> Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:create' %}"><i class="fas fa-feather-alt"></i> Blog Yaz</a>
+        </li>
+        {% if user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link" href="/admin"><i class="fas fa-cogs"></i> Admin</a>
+            </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:login' %}"><i class="fas fa-user"></i> Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:register' %}"><i class="fas fa-user"></i> Register</a>
+        </li>
+        {% endif %}
+        <form class="form-inline mt-2 mt-md-0 d-none d-lg-block">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="q" value="{{ request.GET.q }}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </ul>
+      </div>
+    </div>
+  </nav>
