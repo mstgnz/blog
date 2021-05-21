@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware'=>['CheckSession']], function(){
     Route::group(['prefix'=>'user'], function(){
         Route::get('/logout', [UserController::class, 'logout']);
-        Route::get('/profile', [UserController::class, 'profile']);
+        Route::get('/profile/{id}?', [UserController::class, 'profile']);
     });
     Route::group(['prefix'=>'blog'], function(){
         Route::get('/create', [BlogController::class, 'createGet']);

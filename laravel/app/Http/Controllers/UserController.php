@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classes\CResult;
 use App\Classes\CSession;
+use App\Jobs\JLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,7 @@ class UserController extends Controller
             $user = $this->checkMail($request->email);
             if($user){
                 if(Hash::check($request->password, $user->password)){
+                    JLog::dispatch($user);
                     $this->setSession($user->toArray());
                     return redirect("/");
                 }else{

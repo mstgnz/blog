@@ -18,6 +18,6 @@ class Blog extends Model
     }
 
     public function user(){
-        return $this->hasOne('App\Models\User','user_id');
+        return $this->hasOne('App\Models\User','id','user_id')->select('id','firstname','lastname');
     }
 }
