@@ -12,3 +12,6 @@ Blog project with NodeJS and React technology. We will provide api service with 
 
 ## [Blog with Java - Spring Boot api and NextJs client](https://github.com/mstgnz/blog/tree/main/java)
 Blog project with Java and NextJs technology. We will provide api service with spring boot. We will send a request to the api service with the client we created with NextJs. PostgreSql will be used.
+
+## [Blog with Go - Go api and Angular client](https://github.com/mstgnz/blog/tree/main/go)
+Blog project with Go and Angular technology. We will provide api service with Go. We will send a request to the api service with the client we created with Angular. PostgreSql will be used.
