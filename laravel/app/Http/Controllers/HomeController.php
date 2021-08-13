@@ -7,15 +7,17 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $blogs = Blog::select('*')->with('user')->get();
-        return view('pages.home', ['blogs'=>$blogs]);
+        return view('pages.home', ['blogs' => $blogs]);
     }
 
-    public function detail($slug){
+    public function detail($slug)
+    {
         $blog = Blog::select('*')->where([
             'slug' => $slug
         ])->with('user')->first();
-        return view('pages.blog.detail', ['blog'=>$blog]);
+        return view('pages.blog.detail', ['blog' => $blog]);
     }
 }

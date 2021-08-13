@@ -10,12 +10,12 @@ def index(request):
     query = request.GET.get('q')
     if query:
         blogs = blogs.filter(
-            Q(title__icontains = query) |
-            Q(content__icontains = query) |
-            Q(user__first_name__icontains = query) |
-            Q(user__last_name__icontains = query)
+            Q(title__icontains=query) |
+            Q(content__icontains=query) |
+            Q(user__first_name__icontains=query) |
+            Q(user__last_name__icontains=query)
         ).distinct()
-    return render(request, 'blog/index.html', {'blogs':blogs})
+    return render(request, 'blog/index.html', {'blogs': blogs})
 
 
 def create(request):
@@ -48,8 +48,8 @@ def detail(request, slug):
         messages.success(request, "Yorum Kaydedildi")
         return HttpResponseRedirect(blog.get_absolute_url())
     context = {
-        'blog':blog,
-        'form':form
+        'blog': blog,
+        'form': form
     }
     return render(request, 'blog/detail.html', context)
 

@@ -12,51 +12,55 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    
-    public function loginGet(){
-        if(CSession::get("user")) return redirect("/");
+
+    public function loginGet()
+    {
+        if (CSession::get("user")) return redirect("/");
         return view('pages.user.login');
     }
 
-    public function loginPost(Request $request){
+    public function loginPost(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'email'         => 'required|regex:/^([\w\.-]+@[\w]+\.[\w]+(\.[\w]+)?)$/i',
             'password'      => 'required|regex:/^[^\'\"<>;,]+$/i'
         ]);
-        if($validator->fails()){
-            return CResult::bad("Hatalı Form Datası","request.bad",$validator->errors()->all());
-        }else{
+        if ($validator->fails()) {
+            return CResult::bad("Hatalı Form Datası", "request.bad", $validator->errors()->all());
+        } else {
             $user = $this->checkMail($request->email);
-            if($user){
-                if(Hash::check($request->password, $user->password)){
+            if ($user) {
+                if (Hash::check($request->password, $user->password)) {
                     JLog::dispatch($user);
                     $this->setSession($user->toArray());
                     return redirect("/");
-                }else{
+                } else {
                     dd("parola hatalı");
                 }
-            }else{
+            } else {
                 dd("user bulunamadı");
             }
         }
     }
 
-    public function registerGet(){
-        if(CSession::get("user")) return redirect("/");
+    public function registerGet()
+    {
+        if (CSession::get("user")) return redirect("/");
         return view('pages.user.register');
     }
 
-    public function registerPost(Request $request){
+    public function registerPost(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'firstname'     => 'required|max:24|regex:/^[a-zA-ZöçşüğıÖÇŞÜĞİ\s]+$/i',
             'lastname'      => 'required|max:24|different:firstname|regex:/^[a-zA-ZöçşüğıÖÇŞÜĞİ\s]+$/i',
             'email'         => 'required|regex:/^([\w\.-]+@[\w]+\.[\w]+(\.[\w]+)?)$/i',
             'password'      => 'required|regex:/^[^\'\"<>;,]+$/i'
         ]);
-        if($validator->fails()){
-            return CResult::bad("Hatalı Form Datası","request.bad",$validator->errors()->all());
-        }else{
-            if($this->checkMail($request->email)){
+        if ($validator->fails()) {
+            return CResult::bad("Hatalı Form Datası", "request.bad", $validator->errors()->all());
+        } else {
+            if ($this->checkMail($request->email)) {
                 dd("Bu mail kayıtlı");
             }
             $data = [
@@ -72,18 +76,21 @@ class UserController extends Controller
         }
     }
 
-    public function profile(){
+    public function profile()
+    {
         return view('pages.user.profile');
     }
 
-    public function logout(){
+    public function logout()
+    {
         CSession::remove("user");
         return redirect("/");
     }
 
-    private function checkMail($email){
-        $user = User::select('*')->where('email','=',$email)->first();
-        if($user) return $user;
+    private function checkMail($email)
+    {
+        $user = User::select('*')->where('email', '=', $email)->first();
+        if ($user) return $user;
         return false;
     }
 }

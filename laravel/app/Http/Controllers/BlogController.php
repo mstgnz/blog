@@ -11,19 +11,21 @@ use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
-    public function createGet(){
+    public function createGet()
+    {
         return view('pages.blog.create');
     }
 
-    public function createPost(Request $request){
+    public function createPost(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'title'     => 'required|regex:/^(.+)$/i',
             'short_text'   => 'required|regex:/^[^\'\"\`]+$/i',
             'long_text'   => 'required|regex:/^[^\'\"\`]+$/i'
         ]);
-        if($validator->fails()){
-            return CResult::bad("Hatalı Form Datası","request.bad",$validator->errors()->all());
-        }else{
+        if ($validator->fails()) {
+            return CResult::bad("Hatalı Form Datası", "request.bad", $validator->errors()->all());
+        } else {
             Blog::create([
                 'user_id' => CSession::get('user')['id'],
                 'title' => $request->title,

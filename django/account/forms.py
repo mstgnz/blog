@@ -2,9 +2,11 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
+
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50, label="Kullanıcı Adınız")
-    password = forms.CharField(max_length=50, label="Şifreniz", widget=forms.PasswordInput)
+    password = forms.CharField(
+        max_length=50, label="Şifreniz", widget=forms.PasswordInput)
 
     def clean(self):
         username = self.cleaned_data.get('username')
@@ -24,12 +26,14 @@ class LoginForm(forms.Form):
 
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(max_length=50, label="Kullanıcı Adınız")
-    password1 = forms.CharField(max_length=50, label="Şifreniz", widget=forms.PasswordInput)
-    password2 = forms.CharField(max_length=50, label="Şifreniz Tekrar", widget=forms.PasswordInput)
+    password1 = forms.CharField(
+        max_length=50, label="Şifreniz", widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        max_length=50, label="Şifreniz Tekrar", widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['username','password1','password2',]
+        fields = ['username', 'password1', 'password2', ]
 
     def clean_password2(self):
         username = self.cleaned_data.get('username')
@@ -43,4 +47,3 @@ class RegisterForm(forms.ModelForm):
         super(RegisterForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
-            

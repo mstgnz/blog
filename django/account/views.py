@@ -6,6 +6,7 @@ from .forms import LoginForm, RegisterForm
 def index(request):
     return render(request, 'account/index.html', {})
 
+
 def login_screen(request):
     form = LoginForm(request.POST or None)
     if form.is_valid():
@@ -14,7 +15,8 @@ def login_screen(request):
         user = authenticate(username=username, password=password)
         login(request, user)
         return redirect('/')
-    return render(request, 'account/login.html', {'form':form})
+    return render(request, 'account/login.html', {'form': form})
+
 
 def register_screen(request):
     form = RegisterForm(request.POST or None)
@@ -26,7 +28,8 @@ def register_screen(request):
         check_user = authenticate(username=user.username, password=password)
         login(request, check_user)
         return redirect('blog:index')
-    return render(request, 'account/register.html', {'form':form})
+    return render(request, 'account/register.html', {'form': form})
+
 
 def logout_screen(request):
     logout(request)

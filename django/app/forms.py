@@ -1,10 +1,11 @@
 from django import forms
 from .models import Blog, Comment
 
+
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ['title','content','image']
+        fields = ['title', 'content', 'image']
 
     def __init__(self, *args, **kwargs):
         super(BlogForm, self).__init__(*args, **kwargs)
@@ -13,10 +14,11 @@ class BlogForm(forms.ModelForm):
             for field in self.fields:
                 self.fields[field].widget.attrs['class'] = 'form-control'
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['name','text']
+        fields = ['name', 'text']
 
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
