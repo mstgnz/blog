@@ -1,9 +1,17 @@
 package entity
 
 type Blog struct {
-	ID      uint64 `gorm:"primary_key:auto_increment" json:"id"`
-	Title   string `gorm:"type:varchar(255)" json:"title"`
-	Content string `gorm:"type:text" json:"content"`
-	UserID  uint64 `gorm:"not null" json:"-"`
-	User    User   `gorm:"foreignkey:UserID;constraint:onUpdate:CASCADE,onDelete:CASCADE" json:"user"`
+	ID         uint64 `json:"id"`
+	UserID     uint64 `json:"-"`
+	Title      string `json:"title"`
+	Slug       string `json:"slug"`
+	ShortText  string `json:"short_text"`
+	LongText   string `json:"long_text"`
+	CreateDate string `gorm:"->" json:"create_date"`
+	UpdateDate string `gorm:"->" json:"update_date"`
 }
+
+/*
+	//User       User   `gorm:"->" json:"user"`
+	gorm preload özelliği ile ilişkili olan tablo inject edilebiliyor ancak tüm alanları eklediği için ve entity objesi gerçek tablo alanlarımızla birebir eşleşmesine engel olduğu için tamamen dto üzerinden çalışmak daha mantıklı.
+*/

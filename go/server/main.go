@@ -27,32 +27,33 @@ var (
 
 func main() {
 	defer config.CloseDatabase(db)
-	r := gin.Default()
 
-	authRoutes := r.Group("api/auth")
+	router := gin.Default()
+
+	authRoutes := router.Group("api/auth")
 	{
 		authRoutes.POST("/login", authController.Login)
 		authRoutes.POST("/register", authController.Register)
 	}
 
-	userRoutes := r.Group("api/user", middleware.AuthorizeJWT(jwtService))
+	userRoutes := router.Group("api/user", middleware.AuthorizeJWT(jwtService))
 	{
 		userRoutes.GET("/profile", userController.Profile)
 		userRoutes.PUT("/profile", userController.Update)
 	}
 
-	blogRoutes := r.Group("api/blogs")
+	blogRoutes := router.Group("api/blogs")
 	{
 		blogRoutes.GET("/", blogController.All)
 		blogRoutes.GET("/:id", blogController.FindByID)
 	}
 
-	blogRoutesAuth := r.Group("api/blogs", middleware.AuthorizeJWT(jwtService))
+	blogRoutesAuth := router.Group("api/blogs", middleware.AuthorizeJWT(jwtService))
 	{
 		blogRoutesAuth.POST("/", blogController.Insert)
 		blogRoutesAuth.PUT("/:id", blogController.Update)
 		blogRoutesAuth.DELETE("/:id", blogController.Delete)
 	}
 
-	r.Run()
+	router.Run(":8080")
 }

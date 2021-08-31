@@ -1,6 +1,8 @@
 package helper
 
-import "strings"
+import (
+	"strings"
+)
 
 type Response struct {
 	Status  bool        `json:"status"`
@@ -10,6 +12,16 @@ type Response struct {
 }
 
 type EmptyObj struct{}
+
+func GenerateResponse(data interface{}, err error) Response {
+	response := Response{}
+	if err != nil {
+		response = BuildErrorResponse("ERROR", err.Error(), err)
+	}
+	response = BuildResponse(true, "OK", data)
+
+	return response
+}
 
 func BuildResponse(status bool, message string, data interface{}) Response {
 	res := Response{

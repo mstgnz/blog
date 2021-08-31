@@ -8,6 +8,16 @@ import { LogoComponent } from './header/logo/logo.component';
 import { HakkindaComponent } from './hakkinda/hakkinda.component';
 import { ButtonComponent } from './components/button/button.component';
 import { InputComponent } from './components/input/input.component';
+import { FooterComponent } from './footer/footer.component';
+import { AuthComponent } from './auth/auth.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BlogComponent } from './blog/blog.component';
+import { CommentComponent } from './blog/detail/comment/comment.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { DetailComponent } from './blog/detail/detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,13 +26,19 @@ import { InputComponent } from './components/input/input.component';
     LogoComponent,
     HakkindaComponent,
     ButtonComponent,
-    InputComponent
+    InputComponent,
+    FooterComponent,
+    AuthComponent,
+    ProfileComponent,
+    BlogComponent,
+    CommentComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    DetailComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

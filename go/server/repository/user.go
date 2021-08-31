@@ -19,24 +19,24 @@ type IUserRepository interface {
 	ProfileUser(userID string) entity.User
 }
 
-type userConnection struct {
+type userRepository struct {
 	connection *gorm.DB
 }
 
 //UserRepository is creates a new instance of IUserRepository
 func UserRepository(db *gorm.DB) IUserRepository {
-	return &userConnection{
+	return &userRepository{
 		connection: db,
 	}
 }
 
-func (db *userConnection) InsertUser(user entity.User) entity.User {
+func (db *userRepository) InsertUser(user entity.User) entity.User {
 	user.Password = hashAndSalt([]byte(user.Password))
 	db.connection.Save(&user)
 	return user
 }
 
-func (db *userConnection) UpdateUser(user entity.User) entity.User {
+func (db *userRepository) UpdateUser(user entity.User) entity.User {
 	if user.Password != "" {
 		user.Password = hashAndSalt([]byte(user.Password))
 	} else {
@@ -49,7 +49,7 @@ func (db *userConnection) UpdateUser(user entity.User) entity.User {
 	return user
 }
 
-func (db *userConnection) VerifyCredential(email string, password string) interface{} {
+func (db *userRepository) VerifyCredential(email string, password string) interface{} {
 	var user entity.User
 	res := db.connection.Where("email = ?", email).Take(&user)
 	if res.Error == nil {
@@ -58,18 +58,18 @@ func (db *userConnection) VerifyCredential(email string, password string) interf
 	return nil
 }
 
-func (db *userConnection) IsDuplicateEmail(email string) (tx *gorm.DB) {
+func (db *userRepository) IsDuplicateEmail(email string) (tx *gorm.DB) {
 	var user entity.User
 	return db.connection.Where("email = ?", email).Take(&user)
 }
 
-func (db *userConnection) FindByEmail(email string) entity.User {
+func (db *userRepository) FindByEmail(email string) entity.User {
 	var user entity.User
 	db.connection.Where("email = ?", email).Take(&user)
 	return user
 }
 
-func (db *userConnection) ProfileUser(userID string) entity.User {
+func (db *userRepository) ProfileUser(userID string) entity.User {
 	var user entity.User
 	db.connection.Preload("Blogs").Preload("Blogs.User").Find(&user, userID)
 	return user

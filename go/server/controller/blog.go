@@ -35,7 +35,7 @@ func BlogController(blogServ service.IBlogService, jwtServ service.IJWTService) 
 }
 
 func (c *blogController) All(context *gin.Context) {
-	var blogs []entity.Blog = c.blogService.All()
+	var blogs []dto.BlogListDTO = c.blogService.All()
 	res := helper.BuildResponse(true, "OK", blogs)
 	context.JSON(http.StatusOK, res)
 }
@@ -71,9 +71,14 @@ func (c *blogController) Insert(context *gin.Context) {
 		if err == nil {
 			blogCreateDTO.UserID = convertedUserID
 		}
-		result := c.blogService.Insert(blogCreateDTO)
-		response := helper.BuildResponse(true, "OK", result)
-		context.JSON(http.StatusCreated, response)
+		result, err := c.blogService.Insert(blogCreateDTO)
+		if err != nil {
+			response := helper.BuildErrorResponse("ERROR", err.Error(), err.Error())
+			context.JSON(http.StatusBadRequest, response)
+		} else {
+			response := helper.BuildResponse(true, "OK", result)
+			context.JSON(http.StatusCreated, response)
+		}
 	}
 }
 

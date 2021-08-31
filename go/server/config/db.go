@@ -27,8 +27,8 @@ func OpenDatabase() *gorm.DB {
 	if err != nil {
 		panic("Failed to create a connection to database")
 	}
-	// auto migrate?
-	//db.AutoMigrate(&entity.Blog{}, &entity.User{})
+	// auto migrate? db manuel tasarlanacak, grom sadece crud işlemleri için kullanılacak
+	// db.AutoMigrate(&entity.User{}, &entity.Blog{}, &entity.Comment{})
 	return db
 }
 

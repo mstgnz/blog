@@ -12,16 +12,30 @@ import (
 	service "../service"
 )
 
+/*
+çalışma mantığı
+interface veri tipi üzerine inşa edilen kendi veri tipmiz (IAuthController) sadece methodların imzasını barındırıyor
+struct veri tipi üzerine inşa edilen kendi veri tipimiz (authController) ise gereksinimlerimizi barındırıyor.
+interface tanımımızda yer alan methodların struct tanımımızda olması gerekiyor (Login-Register), aksi takdirde hata alırız.
+oluşturulan bu yapıyı dışarıdan kullanabilmek için ise (AuthController) üzerinden start veriyoruz.
+(AuthController) methodu interfacede tanımlı olan method imzalarını barındıran (authController) struct'ını döner
+*/
+
+// interface yapısı sadece method imzalarını barındırır
 type IAuthController interface {
 	Login(ctx *gin.Context)
 	Register(ctx *gin.Context)
 }
 
+// Struct yapısı kendi custom tipimizi oluşturmamızı sağlar.
+// Dışarıya açık olması için ilk harf büyük olmalı hatta fieldlerin bile büyük harfle başlaması gerekir.
+// küçük harfle başlayan tüm isimlendirmeler dışarıya kapalıdır. private özelliği taşır. sadece kendi dosya içersinden erişilebilir.
 type authController struct {
 	authService service.IAuthService
 	jwtService  service.IJWTService
 }
 
+// constructor olarak düşünülebilir, struct dışarıya açık olmadığı için bu yapı ile set ediliyor. dependency injection
 func AuthController(authService service.IAuthService, jwtService service.IJWTService) IAuthController {
 	return &authController{
 		authService: authService,
@@ -29,6 +43,7 @@ func AuthController(authService service.IAuthService, jwtService service.IJWTSer
 	}
 }
 
+// authController struct'ına ait bir method, sadece struct üzerinden ulaşılabilir. authController dışarıya açık olmadığı için AuthController üzerinden erişilir.
 func (c *authController) Login(ctx *gin.Context) {
 	var loginDTO dto.LoginDTO
 	errDTO := ctx.ShouldBind(&loginDTO)
