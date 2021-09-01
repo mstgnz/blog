@@ -15,26 +15,31 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @ToString
-public class Blog implements Serializable {
+public class Blog implements Serializable, IEntity {
     @Id
     @SequenceGenerator(name="seq_blog", allocationSize = 1)
     @GeneratedValue(generator = "seq_blog", strategy = GenerationType.SEQUENCE)
-    @Column(updatable = false)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "users_id")
+    @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
     @Column(length = 100)
     private String title;
-    @Column(length = 1000)
-    private String content;
+    @Column(length = 150)
+    private String slug;
+    @Column(length = 255)
+    private String shortText;
+    @Column(length = 10000)
+    private String longText;
     private Boolean status;
     @OneToMany
-    @JoinColumn(name = "comments_id")
+    @JoinColumn(name = "blog_id")
     private List<Comment> comments;
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Date createDate;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false,
-            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Date updateDate;
 }

@@ -6,11 +6,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/blog")
+@RequestMapping("/api/blogs")
 public class BlogController {
 
     private final BlogService blogService;
@@ -21,7 +22,7 @@ public class BlogController {
     }
 
     @PostMapping
-    public ResponseEntity<BlogDto> save(@RequestBody BlogDto blogDto){
+    public ResponseEntity<BlogDto> save(@Valid @RequestBody BlogDto blogDto){
         return ResponseEntity.ok(blogService.save(blogDto));
     }
 }

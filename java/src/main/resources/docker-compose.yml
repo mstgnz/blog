@@ -1,19 +1,45 @@
-version: '3.4'
+version: '3.5'
 services:
   db:
     image: postgres
     restart: always
-    container_name: blog_db
+    container_name: java_blog_db
     environment:
-      POSTGRES_PASSWORD: myBlog
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres:/opt/postgres
+    networks:
+      - postgres
     ports:
-      - 5432:5432
+      - 5433:5432
+    # 5432 portu ile dışarı açınca postgres role hatası veriyor.
+
+  adminer:
+    image: adminer
+    restart: always
+    container_name: java_blog_db_admin
+    ports:
+      - 8081:8080
+    networks:
+      - postgres
+    volumes:
+      - adminer:/opt/postgres/adminer
+
   spring-rabbitmq:
     image: rabbitmq:3-management
-    container_name: blog_rabbitmq
+    container_name: java_blog_rabbitmq
     ports:
-      - '15672:15672'
-      - '5672:5672'
+      - 15672:15672
+      - 5672:5672
     environment:
       - RABBITMQ_DEFAULT_USER=mstgnz
       - RABBITMQ_DEFAULT_PASS=mstgnz
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
+  adminer:

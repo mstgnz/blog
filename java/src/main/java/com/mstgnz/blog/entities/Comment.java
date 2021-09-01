@@ -14,14 +14,17 @@ import java.util.Date;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @ToString
-public class Comment implements Serializable {
+public class Comment implements Serializable, IEntity {
     @Id
     @SequenceGenerator(name="seq_comment", allocationSize = 1)
     @GeneratedValue(generator = "seq_comment", strategy = GenerationType.SEQUENCE)
-    @Column(updatable = false)
     private Long id;
-    private String Content;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Blog blog;
+    private String comment;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false,
-            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Date createDate;
 }

@@ -8,9 +8,9 @@ spring:
           validation:
             mode: none
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
-    password: myBlog
+    password: postgres
   rabbitmq:
     host: localhost
     port: 5672
