@@ -20,9 +20,7 @@ public class Blog implements Serializable, IEntity {
     @SequenceGenerator(name="seq_blog", allocationSize = 1)
     @GeneratedValue(generator = "seq_blog", strategy = GenerationType.SEQUENCE)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name="user_id", referencedColumnName = "id")
-    private User user;
+    private Long userId;
     @Column(length = 100)
     private String title;
     @Column(length = 150)
@@ -32,9 +30,6 @@ public class Blog implements Serializable, IEntity {
     @Column(length = 10000)
     private String longText;
     private Boolean status;
-    @OneToMany
-    @JoinColumn(name = "blog_id")
-    private List<Comment> comments;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Date createDate;

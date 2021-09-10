@@ -1,5 +1,6 @@
 package com.mstgnz.blog.entities;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -17,6 +18,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements UserDetails, IEntity {
     @Id
     @SequenceGenerator(name="seq_user", allocationSize = 1)
@@ -26,9 +28,6 @@ public class User implements UserDetails, IEntity {
     private String password;
     private String firstname;
     private String lastname;
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<Blog> blogs;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")

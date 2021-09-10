@@ -1,15 +1,26 @@
 {
-  "name": "learn-starter",
+  "name": "my-blog",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Mesut GENEZ",
+    "email": "mesutgenez@hotmail.com",
+    "url": "https://github.com/mstgnz"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.21.4",
+    "bootstrap": "^5.0.0-beta3",
+    "js-cookie": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
     "next": "^10.0.0",
+    "next-auth": "^3.29.0",
     "react": "17.0.1",
     "react-dom": "17.0.1"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

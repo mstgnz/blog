@@ -19,9 +19,8 @@ public class Comment implements Serializable, IEntity {
     @SequenceGenerator(name="seq_comment", allocationSize = 1)
     @GeneratedValue(generator = "seq_comment", strategy = GenerationType.SEQUENCE)
     private Long id;
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Blog blog;
+    private Long blogId;
+    private Long userId;
     private String comment;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false,

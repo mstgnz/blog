@@ -26,11 +26,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().authenticationEntryPoint((request, response, e) -> response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()));
         // authenticated
         http
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/users}").authenticated()
-                //.antMatchers(HttpMethod.DELETE, "/api/users/{[0-9]+}").authenticated()
-                .and()
-                .authorizeRequests().anyRequest().permitAll();
+            .authorizeRequests()
+            .antMatchers(HttpMethod.GET, "/api/users").authenticated()
+            .antMatchers(HttpMethod.DELETE, "/api/users/{[0-9]+}").authenticated()
+            .antMatchers(HttpMethod.POST, "/api/blogs").authenticated()
+            .antMatchers(HttpMethod.DELETE, "/api/blogs/{blogId:[0-9]+}").authenticated()
+            .antMatchers(HttpMethod.POST, "/api/blogs/{blogId:[0-9]+}/comment").authenticated()
+            .antMatchers(HttpMethod.DELETE, "/api/blogs/{blogId:[0-9]+}/comment/{commentId:[0-9]+}").authenticated()
+            .and()
+            .authorizeRequests().anyRequest().permitAll();
         // Session disable
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         // All request use tokenFilter

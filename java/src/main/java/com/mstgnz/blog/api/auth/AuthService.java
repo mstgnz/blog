@@ -1,5 +1,6 @@
 package com.mstgnz.blog.api.auth;
 
+import com.mstgnz.blog.dto.UserDto;
 import com.mstgnz.blog.entities.User;
 import com.mstgnz.blog.repositories.UserRepository;
 import io.jsonwebtoken.Claims;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,11 +37,26 @@ public class AuthService {
         }
         Map<String,Object> claims = new HashMap<>();
         claims.put("email", user.get().getEmail());
+        claims.put("fullname", user.get().getFirstname() + user.get().getLastname());
         claims.put("userId", user.get().getId());
         return Jwts.builder()
                 .setClaims(claims)
                 .setHeaderParam("typ","JWT")
-                .signWith(SignatureAlgorithm.HS512, "Hak.Geldi.Batil.Zail.Oldu!")
+                .signWith(SignatureAlgorithm.HS512, "Hak.Geldi.Batil.Zail.Oldu!".getBytes(StandardCharsets.UTF_8))
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 12*60*60*1000))
+                .compact();
+    }
+
+    public String register(UserDto userDto) {
+        Map<String,Object> claims = new HashMap<>();
+        claims.put("email", userDto.getEmail());
+        claims.put("fullname", userDto.getFirstname() + userDto.getLastname());
+        claims.put("userId", userDto.getId());
+        return Jwts.builder()
+                .setClaims(claims)
+                .setHeaderParam("typ","JWT")
+                .signWith(SignatureAlgorithm.HS512, "Hak.Geldi.Batil.Zail.Oldu!".getBytes(StandardCharsets.UTF_8))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 12*60*60*1000))
                 .compact();
@@ -47,7 +64,7 @@ public class AuthService {
 
     @Transactional
     public UserDetails getUserDetails(String token) {
-        JwtParser parser = Jwts.parser().setSigningKey("Hak.Geldi.Batil.Zail.Oldu!");
+        JwtParser parser = Jwts.parser().setSigningKey("Hak.Geldi.Batil.Zail.Oldu!".getBytes(StandardCharsets.UTF_8));
         try{
             parser.parse(token);
             Claims claims = parser.parseClaimsJws(token).getBody();
@@ -61,6 +78,23 @@ public class AuthService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public User create(UserDto userDto) {
+        Optional<User> checkUser = userRepository.findByEmail(userDto.getEmail());
+        User user = new User();
+        user.setEmail(userDto.getEmail());
+        user.setLastname(userDto.getLastname());
+        user.setFirstname(userDto.getFirstname());
+        user.setCreateDate(new Date());
+        String encryptedPassword = this.passwordEncoder.encode(userDto.getPassword());
+        user.setPassword(encryptedPassword);
+        if(checkUser.isEmpty()){
+            return this.userRepository.save(user);
+        }else{
+            user.setId(checkUser.get().getId());
+            return user;
+        }
     }
 
 

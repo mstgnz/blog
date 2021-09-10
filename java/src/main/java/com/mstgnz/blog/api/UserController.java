@@ -20,28 +20,13 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
-    public ResponseService createUser(@Valid @RequestBody UserDto userDto) {
-        userDto = new UserDto(userService.create(userDto));
-        ResponseService response = new ResponseService();
-        if (userDto.getId() != 0) {
-            response.setLang("user.created");
-            response.setData(userDto);
-            response.setMessage("Üyelik Oluşturuldu");
-        } else {
-            response.setSuccess(false);
-            response.setLang("user.created.error");
-            response.setData(userDto);
-            response.setMessage("Üyelik Oluşturulamadı");
-        }
-        return response;
-    }
-
+    @CrossOrigin
     @GetMapping
     public Page<UserDto> getUsers(Pageable pageable) {
         return userService.getUsers(pageable).map(UserDto::new);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{userId:[0-9]+}")
     @Transactional
     public ResponseService deleteUser(@PathVariable long userId, @CurrentUser User user){
