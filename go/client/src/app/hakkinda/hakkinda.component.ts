@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SmsService } from '../services/sms.service';
 
 @Component({
   selector: 'app-hakkinda',
@@ -9,13 +8,9 @@ import { SmsService } from '../services/sms.service';
 export class HakkindaComponent implements OnInit {
   public sirketAdi: String = 'İmovasyon';
 
-  constructor(private smsService: SmsService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
-  smsGonderici(event: any) {
-    this.smsService.smsGonder();
 
-    console.log('sms gönderildi', event);
-  }
 }

@@ -1,0 +1,18 @@
+version: "3.5"
+services:
+  db:
+    image: mongo
+    restart: always
+    container_name: node_blog
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - mongodb:/opt/mongodb
+    networks:
+      - mongodb
+    ports:
+      - 27017:27017
+
+volumes:
+  mongodb:

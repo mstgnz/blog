@@ -12,4 +12,6 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
 
     List<Blog> findByUserId(long userId);
 
+    List<Blog> findBySlugOrShortTextAndId(long userId);
+
 }

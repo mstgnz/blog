@@ -1,7 +1,10 @@
 package repository
 
 import (
+	"github.com/gosimple/slug"
 	"gorm.io/gorm"
+	"strconv"
+	"time"
 
 	entity "../entity"
 )
@@ -12,6 +15,7 @@ type IBlogRepository interface {
 	DeleteBlog(b entity.Blog)
 	AllBlog() []entity.Blog
 	FindBlogByID(blogID uint64) entity.Blog
+	GenerateSlug(slug string) string
 }
 
 type blogRepository struct {
@@ -25,6 +29,10 @@ func BlogRepository(dbConn *gorm.DB) IBlogRepository {
 }
 
 func (db *blogRepository) InsertBlog(b entity.Blog) (entity.Blog, error) {
+
+	// slug control
+	b.Slug = db.GenerateSlug(b.Title)
+
 	if err := db.connection.Save(&b).Error; err != nil {
 		return b, err
 	}
@@ -51,4 +59,14 @@ func (db *blogRepository) AllBlog() []entity.Blog {
 	var blogs []entity.Blog
 	db.connection.Preload("User").Find(&blogs)
 	return blogs
+}
+
+func (db *blogRepository) GenerateSlug(title string) string {
+	generateSlug := slug.Make(title)
+	var blog entity.Blog
+	db.connection.Where("slug = ?", generateSlug).First(&blog)
+	if len(blog.Slug) > 0{
+		return generateSlug +"-"+ strconv.FormatInt(time.Now().Unix(), 10)
+	}
+	return generateSlug
 }

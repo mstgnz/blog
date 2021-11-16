@@ -5,9 +5,9 @@
             <div *ngFor="let blog of blogs">
                 <!-- Post preview-->
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="{{blog.slug}}">
                         <h2 class="post-title">{{blog.title}}</h2>
-                        <h3 class="post-subtitle">{{blog.content}}</h3>
+                        <h6 class="post-subtitle">{{blog.shortText}}</h6>
                     </a>
                     <p class="post-meta">
                         Posted by

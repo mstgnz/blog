@@ -4,9 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login } from '../models/login';
 import { Register } from '../models/register';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
   constructor(
     private httpClient: HttpClient,

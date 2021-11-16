@@ -36,7 +36,6 @@ func (service *blogService) Insert(b dto.BlogCreateDTO) (entity.Blog, error) {
 	if err != nil {
 		log.Fatalf("Failed map %v: ", err)
 	}
-	blog.Slug = "slugum1"
 	return service.blogRepository.InsertBlog(blog)
 }
 
@@ -60,6 +59,7 @@ func (service *blogService) All() []dto.BlogListDTO {
 	for i := 0; i < len(getList); i++ {
 		list = append(list, dto.BlogListDTO{
 			ID:         getList[i].ID,
+			Slug: 		getList[i].Slug,
 			UserID:     getList[i].UserID,
 			Title:      getList[i].Title,
 			ShortText:  getList[i].ShortText,

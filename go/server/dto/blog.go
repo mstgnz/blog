@@ -17,11 +17,11 @@ type BlogUpdateDTO struct {
 
 type BlogListDTO struct {
 	ID         uint64 `json:"id"`
-	UserID     uint64 `json:"user_id"`
+	UserID     uint64 `json:"userID"`
 	Title      string `json:"title"`
 	Slug       string `json:"slug"`
-	ShortText  string `json:"short_text"`
-	LongText   string `json:"long_text"`
-	CreateDate string `json:"create_date"`
-	UpdateDate string `json:"update_date"`
+	ShortText  string `json:"shortText"`
+	LongText   string `json:"longText"`
+	CreateDate string `json:"createDate"`
+	UpdateDate string `json:"updateDate"`
 }
