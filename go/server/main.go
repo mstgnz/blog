@@ -55,5 +55,5 @@ func main() {
 		blogRoutesAuth.DELETE("/:id", blogController.Delete)
 	}
 
-	router.Run(":8080")
+	router.Run(":8585")
 }
