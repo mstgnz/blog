@@ -5,9 +5,9 @@ import (
 
 	"github.com/mashingan/smapping"
 
-	"blog/dto"
-	"blog/entity"
-	"blog/repository"
+	"server/dto"
+	"server/entity"
+	"server/repository"
 )
 
 type IUserService interface {

@@ -7,8 +7,8 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 
-	"blog/helper"
-	"blog/service"
+	"server/helper"
+	"server/service"
 )
 
 func AuthorizeJWT(jwtService service.IJWTService) gin.HandlerFunc {

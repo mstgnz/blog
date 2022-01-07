@@ -6,9 +6,9 @@ import (
 	"github.com/mashingan/smapping"
 	"golang.org/x/crypto/bcrypt"
 
-	"blog/dto"
-	"blog/entity"
-	"blog/repository"
+	"server/dto"
+	"server/entity"
+	"server/repository"
 )
 
 type IAuthService interface {

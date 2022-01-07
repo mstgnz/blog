@@ -7,7 +7,7 @@ import (
 	"github.com/gosimple/slug"
 	"gorm.io/gorm"
 
-	"blog/entity"
+	"server/entity"
 )
 
 type IBlogRepository interface {

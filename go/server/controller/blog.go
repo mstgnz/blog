@@ -8,10 +8,10 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 
-	"blog/dto"
-	"blog/entity"
-	"blog/helper"
-	"blog/service"
+	"server/dto"
+	"server/entity"
+	"server/helper"
+	"server/service"
 )
 
 type IBlogController interface {

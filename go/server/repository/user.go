@@ -6,7 +6,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 
-	"blog/entity"
+	"server/entity"
 )
 
 //IUserRepository is contract what userRepository can do to db
