@@ -6,9 +6,9 @@ import (
 
 	"github.com/mashingan/smapping"
 
-	"server/dto"
-	"server/entity"
-	"server/repository"
+	"blog/dto"
+	"blog/entity"
+	"blog/repository"
 )
 
 type IBlogService interface {
@@ -59,7 +59,7 @@ func (service *blogService) All() []dto.BlogListDTO {
 	for i := 0; i < len(getList); i++ {
 		list = append(list, dto.BlogListDTO{
 			ID:         getList[i].ID,
-			Slug: 		getList[i].Slug,
+			Slug:       getList[i].Slug,
 			UserID:     getList[i].UserID,
 			Title:      getList[i].Title,
 			ShortText:  getList[i].ShortText,

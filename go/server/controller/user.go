@@ -8,9 +8,9 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 
-	"server/dto"
-	"server/helper"
-	"server/service"
+	"blog/dto"
+	"blog/helper"
+	"blog/service"
 )
 
 type IUserController interface {

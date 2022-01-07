@@ -7,7 +7,7 @@ import (
 	"github.com/gosimple/slug"
 	"gorm.io/gorm"
 
-	"server/entity"
+	"blog/entity"
 )
 
 type IBlogRepository interface {
@@ -66,8 +66,8 @@ func (db *blogRepository) GenerateSlug(title string) string {
 	generateSlug := slug.Make(title)
 	var blog entity.Blog
 	db.connection.Where("slug = ?", generateSlug).First(&blog)
-	if len(blog.Slug) > 0{
-		return generateSlug +"-"+ strconv.FormatInt(time.Now().Unix(), 10)
+	if len(blog.Slug) > 0 {
+		return generateSlug + "-" + strconv.FormatInt(time.Now().Unix(), 10)
 	}
 	return generateSlug
 }

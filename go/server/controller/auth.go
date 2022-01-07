@@ -6,10 +6,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"server/dto"
-	"server/entity"
-	"server/helper"
-	"server/service"
+	"blog/dto"
+	"blog/entity"
+	"blog/helper"
+	"blog/service"
 )
 
 /*
