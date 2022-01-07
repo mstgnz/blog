@@ -8,21 +8,25 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
+// IJWTService interface
 type IJWTService interface {
 	GenerateToken(userID string) string
 	ValidateToken(token string) (*jwt.Token, error)
 }
 
+// jwtCustomClaim struct
 type jwtCustomClaim struct {
 	UserID string `json:"user_id"`
 	jwt.StandardClaims
 }
 
+// jwtService struct
 type jwtService struct {
 	secretKey string
 	issuer    string
 }
 
+// JWTService instance
 func JWTService() IJWTService {
 	return &jwtService{
 		issuer:    "ydhnwb",
@@ -30,6 +34,7 @@ func JWTService() IJWTService {
 	}
 }
 
+// getSecretKey get key
 func getSecretKey() string {
 	secretKey := os.Getenv("JWT_SECRET")
 	if secretKey != "" {
@@ -38,6 +43,7 @@ func getSecretKey() string {
 	return secretKey
 }
 
+// GenerateToken token generate
 func (j *jwtService) GenerateToken(UserID string) string {
 	claims := &jwtCustomClaim{
 		UserID,
@@ -55,6 +61,7 @@ func (j *jwtService) GenerateToken(UserID string) string {
 	return t
 }
 
+// ValidateToken token validate
 func (j *jwtService) ValidateToken(token string) (*jwt.Token, error) {
 	return jwt.Parse(token, func(t_ *jwt.Token) (interface{}, error) {
 		if _, ok := t_.Method.(*jwt.SigningMethodHMAC); !ok {

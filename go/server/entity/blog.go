@@ -1,5 +1,6 @@
 package entity
 
+// Blog Entity
 type Blog struct {
 	ID         uint64 `json:"id"`
 	UserID     uint64 `json:"-"`

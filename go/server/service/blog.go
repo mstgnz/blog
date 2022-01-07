@@ -11,6 +11,7 @@ import (
 	"server/repository"
 )
 
+// IBlogService interface
 type IBlogService interface {
 	Insert(b dto.BlogCreateDTO) (entity.Blog, error)
 	Update(b dto.BlogUpdateDTO) entity.Blog
@@ -20,16 +21,19 @@ type IBlogService interface {
 	IsAllowedToEdit(userID string, blogID uint64) bool
 }
 
+// blogService struct
 type blogService struct {
 	blogRepository repository.IBlogRepository
 }
 
+// BlogService instance
 func BlogService(blogRepo repository.IBlogRepository) IBlogService {
 	return &blogService{
 		blogRepository: blogRepo,
 	}
 }
 
+// Insert blog service
 func (service *blogService) Insert(b dto.BlogCreateDTO) (entity.Blog, error) {
 	blog := entity.Blog{}
 	err := smapping.FillStruct(&blog, smapping.MapFields(&b))
@@ -39,6 +43,7 @@ func (service *blogService) Insert(b dto.BlogCreateDTO) (entity.Blog, error) {
 	return service.blogRepository.InsertBlog(blog)
 }
 
+// Update blog service
 func (service *blogService) Update(b dto.BlogUpdateDTO) entity.Blog {
 	blog := entity.Blog{}
 	err := smapping.FillStruct(&blog, smapping.MapFields(&b))
@@ -49,10 +54,12 @@ func (service *blogService) Update(b dto.BlogUpdateDTO) entity.Blog {
 	return res
 }
 
+// Delete blog service
 func (service *blogService) Delete(b entity.Blog) {
 	service.blogRepository.DeleteBlog(b)
 }
 
+// All blog service
 func (service *blogService) All() []dto.BlogListDTO {
 	list := []dto.BlogListDTO{}
 	getList := service.blogRepository.AllBlog()
@@ -71,10 +78,12 @@ func (service *blogService) All() []dto.BlogListDTO {
 	return list
 }
 
+// FindByID blog service
 func (service *blogService) FindByID(blogID uint64) entity.Blog {
 	return service.blogRepository.FindBlogByID(blogID)
 }
 
+// IsAllowedToEdit blog service
 func (service *blogService) IsAllowedToEdit(userID string, blogID uint64) bool {
 	b := service.blogRepository.FindBlogByID(blogID)
 	id := fmt.Sprintf("%v", b.UserID)

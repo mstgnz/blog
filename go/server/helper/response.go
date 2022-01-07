@@ -4,6 +4,7 @@ import (
 	"strings"
 )
 
+// Response helper
 type Response struct {
 	Status  bool        `json:"status"`
 	Message string      `json:"message"`
@@ -11,6 +12,7 @@ type Response struct {
 	Data    interface{} `json:"data"`
 }
 
+// EmptyObj Empty
 type EmptyObj struct{}
 
 func GenerateResponse(data interface{}, err error) Response {

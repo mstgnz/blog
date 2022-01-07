@@ -10,21 +10,25 @@ import (
 	"server/repository"
 )
 
+// IUserService interface
 type IUserService interface {
 	Update(user dto.UserUpdateDTO) entity.User
 	Profile(userID string) entity.User
 }
 
+// userService struct
 type userService struct {
 	userRepository repository.IUserRepository
 }
 
+// UserService user
 func UserService(userRepo repository.IUserRepository) IUserService {
 	return &userService{
 		userRepository: userRepo,
 	}
 }
 
+// Update user
 func (service *userService) Update(user dto.UserUpdateDTO) entity.User {
 	userToUpdate := entity.User{}
 	err := smapping.FillStruct(&userToUpdate, smapping.MapFields(&user))
@@ -35,6 +39,7 @@ func (service *userService) Update(user dto.UserUpdateDTO) entity.User {
 	return updatedUser
 }
 
+// Profile user
 func (service *userService) Profile(userID string) entity.User {
 	return service.userRepository.ProfileUser(userID)
 }

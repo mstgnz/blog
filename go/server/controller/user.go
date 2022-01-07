@@ -13,16 +13,19 @@ import (
 	"server/service"
 )
 
+// IUserController interface
 type IUserController interface {
 	Update(context *gin.Context)
 	Profile(context *gin.Context)
 }
 
+// userController struct
 type userController struct {
 	userService service.IUserService
 	jwtService  service.IJWTService
 }
 
+// UserController instance
 func UserController(userService service.IUserService, jwtService service.IJWTService) IUserController {
 	return &userController{
 		userService: userService,
@@ -30,6 +33,7 @@ func UserController(userService service.IUserService, jwtService service.IJWTSer
 	}
 }
 
+// Update user
 func (c *userController) Update(context *gin.Context) {
 	var userUpdateDTO dto.UserUpdateDTO
 	errDTO := context.ShouldBind(&userUpdateDTO)
@@ -38,7 +42,6 @@ func (c *userController) Update(context *gin.Context) {
 		context.AbortWithStatusJSON(http.StatusBadRequest, res)
 		return
 	}
-
 	authHeader := context.GetHeader("Authorization")
 	token, errToken := c.jwtService.ValidateToken(authHeader)
 	if errToken != nil {
@@ -55,6 +58,7 @@ func (c *userController) Update(context *gin.Context) {
 	context.JSON(http.StatusOK, res)
 }
 
+// Profile user
 func (c *userController) Profile(context *gin.Context) {
 	authHeader := context.GetHeader("Authorization")
 	token, err := c.jwtService.ValidateToken(authHeader)

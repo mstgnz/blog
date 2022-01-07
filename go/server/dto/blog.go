@@ -1,5 +1,6 @@
 package dto
 
+// BlogCreateDTO Blog Create Data Transfer Objects
 type BlogCreateDTO struct {
 	UserID    uint64 `json:"user_id" form:"user_id"`
 	Title     string `json:"title" form:"title" binding:"required"`
@@ -7,6 +8,7 @@ type BlogCreateDTO struct {
 	LongText  string `json:"long_text" form:"long_text" binding:"required"`
 }
 
+// BlogUpdateDTO Blog Update Data Transfer Objects
 type BlogUpdateDTO struct {
 	ID        uint64 `json:"id" form:"id" binding:"required"`
 	UserID    uint64 `json:"user_id" form:"user_id"`
@@ -15,6 +17,7 @@ type BlogUpdateDTO struct {
 	LongText  string `json:"long_text" form:"long_text" binding:"required"`
 }
 
+// BlogListDTO Blog List Data Transfer Objects
 type BlogListDTO struct {
 	ID         uint64 `json:"id"`
 	UserID     uint64 `json:"userID"`

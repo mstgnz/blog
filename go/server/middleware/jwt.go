@@ -11,6 +11,7 @@ import (
 	"server/service"
 )
 
+// AuthorizeJWT Jwt
 func AuthorizeJWT(jwtService service.IJWTService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.GetHeader("Authorization")

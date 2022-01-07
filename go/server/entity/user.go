@@ -1,5 +1,6 @@
 package entity
 
+// User Entity
 type User struct {
 	ID         uint64 `json:"id"`
 	FirstName  string `json:"firstname"`

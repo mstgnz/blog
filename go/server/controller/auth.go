@@ -21,7 +21,7 @@ oluşturulan bu yapıyı dışarıdan kullanabilmek için ise (AuthController) �
 (AuthController) methodu interfacede tanımlı olan method imzalarını barındıran (authController) struct'ını döner
 */
 
-// interface yapısı sadece method imzalarını barındırır
+// IAuthController interface yapısı sadece method imzalarını barındırır
 type IAuthController interface {
 	Login(ctx *gin.Context)
 	Register(ctx *gin.Context)
@@ -35,7 +35,7 @@ type authController struct {
 	jwtService  service.IJWTService
 }
 
-// constructor olarak düşünülebilir, struct dışarıya açık olmadığı için bu yapı ile set ediliyor. dependency injection
+// AuthController constructor olarak düşünülebilir, struct dışarıya açık olmadığı için bu yapı ile set ediliyor. dependency injection
 func AuthController(authService service.IAuthService, jwtService service.IJWTService) IAuthController {
 	return &authController{
 		authService: authService,
@@ -43,7 +43,7 @@ func AuthController(authService service.IAuthService, jwtService service.IJWTSer
 	}
 }
 
-// authController struct'ına ait bir method, sadece struct üzerinden ulaşılabilir. authController dışarıya açık olmadığı için AuthController üzerinden erişilir.
+// Login authController struct'ına ait bir method, sadece struct üzerinden ulaşılabilir. authController dışarıya açık olmadığı için AuthController üzerinden erişilir.
 func (c *authController) Login(ctx *gin.Context) {
 	var loginDTO dto.LoginDTO
 	errDTO := ctx.ShouldBind(&loginDTO)
@@ -64,6 +64,7 @@ func (c *authController) Login(ctx *gin.Context) {
 	ctx.AbortWithStatusJSON(http.StatusUnauthorized, response)
 }
 
+// Register register
 func (c *authController) Register(ctx *gin.Context) {
 	var registerDTO dto.RegisterDTO
 	errDTO := ctx.ShouldBind(&registerDTO)

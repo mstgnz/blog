@@ -14,6 +14,7 @@ import (
 	"server/service"
 )
 
+// IBlogController interface
 type IBlogController interface {
 	All(context *gin.Context)
 	FindByID(context *gin.Context)
@@ -22,11 +23,13 @@ type IBlogController interface {
 	Delete(context *gin.Context)
 }
 
+// blogController struct
 type blogController struct {
 	blogService service.IBlogService
 	jwtService  service.IJWTService
 }
 
+// BlogController instance
 func BlogController(blogServ service.IBlogService, jwtServ service.IJWTService) IBlogController {
 	return &blogController{
 		blogService: blogServ,
@@ -34,12 +37,14 @@ func BlogController(blogServ service.IBlogService, jwtServ service.IJWTService) 
 	}
 }
 
+// All get all blogs
 func (c *blogController) All(context *gin.Context) {
 	var blogs []dto.BlogListDTO = c.blogService.All()
 	res := helper.BuildResponse(true, "OK", blogs)
 	context.JSON(http.StatusOK, res)
 }
 
+// FindByID get by id for blog
 func (c *blogController) FindByID(context *gin.Context) {
 	id, err := strconv.ParseUint(context.Param("id"), 0, 0)
 	if err != nil {
@@ -58,6 +63,7 @@ func (c *blogController) FindByID(context *gin.Context) {
 	}
 }
 
+// Insert create blog
 func (c *blogController) Insert(context *gin.Context) {
 	var blogCreateDTO dto.BlogCreateDTO
 	errDTO := context.ShouldBind(&blogCreateDTO)
@@ -82,6 +88,7 @@ func (c *blogController) Insert(context *gin.Context) {
 	}
 }
 
+// Update blog
 func (c *blogController) Update(context *gin.Context) {
 	var blogUpdateDTO dto.BlogUpdateDTO
 	errDTO := context.ShouldBind(&blogUpdateDTO)
@@ -112,6 +119,7 @@ func (c *blogController) Update(context *gin.Context) {
 	}
 }
 
+// Delete blog
 func (c *blogController) Delete(context *gin.Context) {
 	var blog entity.Blog
 	id, err := strconv.ParseUint(context.Param("id"), 0, 0)
@@ -137,6 +145,7 @@ func (c *blogController) Delete(context *gin.Context) {
 	}
 }
 
+// getUserIDByToken token
 func (c *blogController) getUserIDByToken(token string) string {
 	aToken, err := c.jwtService.ValidateToken(token)
 	if err != nil {
