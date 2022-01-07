@@ -5,11 +5,11 @@ import (
 
 	"gorm.io/gorm"
 
-	config "./config"
-	controller "./controller"
-	middleware "./middleware"
-	repository "./repository"
-	service "./service"
+	"server/config"
+	"server/controller"
+	"server/middleware"
+	"server/repository"
+	"server/service"
 )
 
 var (

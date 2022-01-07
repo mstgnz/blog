@@ -6,9 +6,9 @@ import (
 
 	"github.com/mashingan/smapping"
 
-	dto "../dto"
-	entity "../entity"
-	repository "../repository"
+	"server/dto"
+	"server/entity"
+	"server/repository"
 )
 
 type IBlogService interface {

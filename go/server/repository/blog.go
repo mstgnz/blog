@@ -1,12 +1,13 @@
 package repository
 
 import (
-	"github.com/gosimple/slug"
-	"gorm.io/gorm"
 	"strconv"
 	"time"
 
-	entity "../entity"
+	"github.com/gosimple/slug"
+	"gorm.io/gorm"
+
+	"server/entity"
 )
 
 type IBlogRepository interface {
