@@ -4,11 +4,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v5"
 
-	"server/helper"
-	"server/service"
+	"github.com/mstgnz/blog/helper"
+	"github.com/mstgnz/blog/service"
 )
 
 // AuthorizeJWT Jwt

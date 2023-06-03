@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 // IJWTService interface
@@ -17,7 +17,7 @@ type IJWTService interface {
 // jwtCustomClaim struct
 type jwtCustomClaim struct {
 	UserID string `json:"user_id"`
-	jwt.StandardClaims
+	jwt.Claims
 }
 
 // jwtService struct
@@ -29,7 +29,7 @@ type jwtService struct {
 // JWTService instance
 func JWTService() IJWTService {
 	return &jwtService{
-		issuer:    "ydhnwb",
+		issuer:    "mes",
 		secretKey: getSecretKey(),
 	}
 }
@@ -38,7 +38,7 @@ func JWTService() IJWTService {
 func getSecretKey() string {
 	secretKey := os.Getenv("JWT_SECRET")
 	if secretKey != "" {
-		secretKey = "ydhnwb"
+		secretKey = "my_secret"
 	}
 	return secretKey
 }
@@ -47,10 +47,10 @@ func getSecretKey() string {
 func (j *jwtService) GenerateToken(UserID string) string {
 	claims := &jwtCustomClaim{
 		UserID,
-		jwt.StandardClaims{
-			ExpiresAt: time.Now().AddDate(1, 0, 0).Unix(),
+		jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().AddDate(1, 0, 0)),
 			Issuer:    j.issuer,
-			IssuedAt:  time.Now().Unix(),
+			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
@@ -65,7 +65,7 @@ func (j *jwtService) GenerateToken(UserID string) string {
 func (j *jwtService) ValidateToken(token string) (*jwt.Token, error) {
 	return jwt.Parse(token, func(t_ *jwt.Token) (interface{}, error) {
 		if _, ok := t_.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method %v", t_.Header["alg"])
+			return nil, fmt.Errorf("unexpected signing method %v", t_.Header["alg"])
 		}
 		return []byte(j.secretKey), nil
 	})

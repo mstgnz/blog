@@ -6,10 +6,10 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 
-	"server/entity"
+	"github.com/mstgnz/blog/entity"
 )
 
-//IUserRepository is contract what userRepository can do to db
+// IUserRepository is contract what userRepository can do to db
 type IUserRepository interface {
 	InsertUser(user entity.User) entity.User
 	UpdateUser(user entity.User) entity.User
@@ -20,19 +20,19 @@ type IUserRepository interface {
 }
 
 type userRepository struct {
-	connection *gorm.DB
+	conn *gorm.DB
 }
 
-//UserRepository is creates a new instance of IUserRepository
+// UserRepository is creates a new instance of IUserRepository
 func UserRepository(db *gorm.DB) IUserRepository {
 	return &userRepository{
-		connection: db,
+		conn: db,
 	}
 }
 
 func (db *userRepository) InsertUser(user entity.User) entity.User {
 	user.Password = hashAndSalt([]byte(user.Password))
-	db.connection.Save(&user)
+	db.conn.Save(&user)
 	return user
 }
 
@@ -41,17 +41,17 @@ func (db *userRepository) UpdateUser(user entity.User) entity.User {
 		user.Password = hashAndSalt([]byte(user.Password))
 	} else {
 		var tempUser entity.User
-		db.connection.Find(&tempUser, user.ID)
+		db.conn.Find(&tempUser, user.ID)
 		user.Password = tempUser.Password
 	}
 
-	db.connection.Save(&user)
+	db.conn.Save(&user)
 	return user
 }
 
-func (db *userRepository) VerifyCredential(email string, password string) interface{} {
+func (db *userRepository) VerifyCredential(email string, _ string) interface{} {
 	var user entity.User
-	res := db.connection.Where("email = ?", email).Take(&user)
+	res := db.conn.Where("email = ?", email).Take(&user)
 	if res.Error == nil {
 		return user
 	}
@@ -60,18 +60,18 @@ func (db *userRepository) VerifyCredential(email string, password string) interf
 
 func (db *userRepository) IsDuplicateEmail(email string) (tx *gorm.DB) {
 	var user entity.User
-	return db.connection.Where("email = ?", email).Take(&user)
+	return db.conn.Where("email = ?", email).Take(&user)
 }
 
 func (db *userRepository) FindByEmail(email string) entity.User {
 	var user entity.User
-	db.connection.Where("email = ?", email).Take(&user)
+	db.conn.Where("email = ?", email).Take(&user)
 	return user
 }
 
 func (db *userRepository) ProfileUser(userID string) entity.User {
 	var user entity.User
-	db.connection.Preload("Blogs").Preload("Blogs.User").Find(&user, userID)
+	db.conn.Preload("Blogs").Preload("Blogs.User").Find(&user, userID)
 	return user
 }
 

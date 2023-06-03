@@ -1,5 +1,9 @@
 package dto
 
+import (
+	"time"
+)
+
 // BlogCreateDTO Blog Create Data Transfer Objects
 type BlogCreateDTO struct {
 	UserID    uint64 `json:"user_id" form:"user_id"`
@@ -19,12 +23,12 @@ type BlogUpdateDTO struct {
 
 // BlogListDTO Blog List Data Transfer Objects
 type BlogListDTO struct {
-	ID         uint64 `json:"id"`
-	UserID     uint64 `json:"userID"`
-	Title      string `json:"title"`
-	Slug       string `json:"slug"`
-	ShortText  string `json:"shortText"`
-	LongText   string `json:"longText"`
-	CreateDate string `json:"createDate"`
-	UpdateDate string `json:"updateDate"`
+	ID        uint64    `json:"id"`
+	UserID    uint64    `json:"user_id"`
+	Title     string    `json:"title"`
+	Slug      string    `json:"slug"`
+	ShortText string    `json:"short_text"`
+	LongText  string    `json:"long_text"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }

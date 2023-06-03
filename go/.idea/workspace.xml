@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="401ea46a-74c1-4805-be90-da747db3e615" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/config/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dto/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/dto/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/entity/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/entity/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/entity/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/entity/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/entity/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/entity/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/helper/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/helper/response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/repository/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/repository/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/repository/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/repository/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/user.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file:///opt/homebrew/opt/go/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="minikube" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/client/package.json" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2Qhyv21W8wbPx23fpOM4L5SBt8v" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/mstgnz/workspace/blog/go/server/repository",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "go"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/repository" />
+      <recent name="$PROJECT_DIR$/server/dto" />
+      <recent name="$PROJECT_DIR$/server/service" />
+      <recent name="$PROJECT_DIR$/server/controller" />
+      <recent name="$PROJECT_DIR$/server" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/cmd" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build github.com/mstgnz/blog/cmd">
+    <configuration name="go build github.com/mstgnz/blog/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="go" />
+      <working_directory value="$PROJECT_DIR$/server" />
+      <kind value="PACKAGE" />
+      <package value="github.com/mstgnz/blog/cmd" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/server/cmd/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="go" />
+      <working_directory value="$PROJECT_DIR$/server" />
+      <kind value="PACKAGE" />
+      <package value="server" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/server/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build server/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="go" />
+      <working_directory value="$PROJECT_DIR$/server" />
+      <kind value="PACKAGE" />
+      <package value="server/cmd" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/server/cmd/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="server/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build github.com/mstgnz/blog/cmd" />
+        <item itemvalue="Docker.server: Compose Deployment" />
+        <item itemvalue="Go Build.go build server/cmd" />
+        <item itemvalue="Go Build.go build server" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

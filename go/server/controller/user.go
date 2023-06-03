@@ -5,12 +5,12 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v5"
 
-	"server/dto"
-	"server/helper"
-	"server/service"
+	"github.com/mstgnz/blog/dto"
+	"github.com/mstgnz/blog/helper"
+	"github.com/mstgnz/blog/service"
 )
 
 // IUserController interface

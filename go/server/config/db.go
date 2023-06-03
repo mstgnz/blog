@@ -5,12 +5,12 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/mstgnz/blog/entity"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	//entity "../entity"
 )
 
-//OpenDatabase is creating a new connection to our database
+// OpenDatabase is creating a new connection to our database
 func OpenDatabase() *gorm.DB {
 	errEnv := godotenv.Load()
 	if errEnv != nil {
@@ -27,16 +27,15 @@ func OpenDatabase() *gorm.DB {
 	if err != nil {
 		panic("Failed to create a connection to database")
 	}
-	// auto migrate? db manuel tasarlanacak, grom sadece crud işlemleri için kullanılacak
-	// db.AutoMigrate(&entity.User{}, &entity.Blog{}, &entity.Comment{})
+	_ = db.AutoMigrate(&entity.User{}, &entity.Blog{}, &entity.Comment{})
 	return db
 }
 
-//CloseDatabase method is closing a connection between your app and your db
+// CloseDatabase method is closing a connection between your app and your db
 func CloseDatabase(db *gorm.DB) {
 	dbSQL, err := db.DB()
 	if err != nil {
 		panic("Failed to close connection from database")
 	}
-	dbSQL.Close()
+	_ = dbSQL.Close()
 }

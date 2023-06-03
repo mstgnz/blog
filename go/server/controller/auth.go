@@ -6,10 +6,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"server/dto"
-	"server/entity"
-	"server/helper"
-	"server/service"
+	"github.com/mstgnz/blog/dto"
+	"github.com/mstgnz/blog/entity"
+	"github.com/mstgnz/blog/helper"
+	"github.com/mstgnz/blog/service"
 )
 
 /*

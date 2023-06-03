@@ -6,9 +6,9 @@ import (
 
 	"github.com/mashingan/smapping"
 
-	"server/dto"
-	"server/entity"
-	"server/repository"
+	"github.com/mstgnz/blog/dto"
+	"github.com/mstgnz/blog/entity"
+	"github.com/mstgnz/blog/repository"
 )
 
 // IBlogService interface
@@ -61,18 +61,18 @@ func (service *blogService) Delete(b entity.Blog) {
 
 // All blog service
 func (service *blogService) All() []dto.BlogListDTO {
-	list := []dto.BlogListDTO{}
+	var list []dto.BlogListDTO
 	getList := service.blogRepository.AllBlog()
 	for i := 0; i < len(getList); i++ {
 		list = append(list, dto.BlogListDTO{
-			ID:         getList[i].ID,
-			Slug:       getList[i].Slug,
-			UserID:     getList[i].UserID,
-			Title:      getList[i].Title,
-			ShortText:  getList[i].ShortText,
-			LongText:   getList[i].LongText,
-			CreateDate: getList[i].CreateDate,
-			UpdateDate: getList[i].UpdateDate,
+			ID:        getList[i].ID,
+			Slug:      getList[i].Slug,
+			UserID:    getList[i].UserID,
+			Title:     getList[i].Title,
+			ShortText: getList[i].ShortText,
+			LongText:  getList[i].LongText,
+			CreatedAt: getList[i].CreatedAt,
+			UpdatedAt: getList[i].UpdatedAt,
 		})
 	}
 	return list

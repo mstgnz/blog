@@ -36,11 +36,11 @@ func BuildResponse(status bool, message string, data interface{}) Response {
 }
 
 func BuildErrorResponse(message string, err string, data interface{}) Response {
-	splittedError := strings.Split(err, "\n")
+	splitError := strings.Split(err, "\n")
 	res := Response{
 		Status:  false,
 		Message: message,
-		Errors:  splittedError,
+		Errors:  splitError,
 		Data:    data,
 	}
 	return res
