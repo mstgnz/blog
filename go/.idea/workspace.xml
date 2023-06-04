@@ -5,26 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="401ea46a-74c1-4805-be90-da747db3e615" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/config/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/auth.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dto/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/dto/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/entity/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/entity/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/entity/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/entity/comment.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/entity/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/entity/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/helper/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/helper/response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/repository/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/repository/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/repository/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/repository/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/auth.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

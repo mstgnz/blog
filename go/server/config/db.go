@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/mstgnz/blog/entity"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -12,10 +11,10 @@ import (
 
 // OpenDatabase is creating a new connection to our database
 func OpenDatabase() *gorm.DB {
-	errEnv := godotenv.Load()
+	/*errEnv := godotenv.Load()
 	if errEnv != nil {
 		panic("Failed to load env file")
-	}
+	}*/
 
 	dbUser := os.Getenv("DB_USER")
 	dbPass := os.Getenv("DB_PASS")

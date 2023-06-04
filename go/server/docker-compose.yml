@@ -3,17 +3,37 @@ version: "3"
 services:
   mysql:
     image: 'mysql:latest'
+    container_name: blog-mysql
     ports:
       - "3306:3306"
     restart: always
-    deploy:
-      mode: replicated
-      replicas: 1
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASS}
       MYSQL_DATABASE: ${DB_NAME}
     volumes:
       - db:/var/lib/mysql
+    networks:
+      - blog
+
+  blog:
+    build: .
+    restart: always
+    working_dir: /app
+    container_name: blog-app
+    ports:
+      - "8585:8585"
+    depends_on:
+      - "mysql"
+    networks:
+      - blog
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+
+networks:
+  blog:
 
 volumes:
   db:
